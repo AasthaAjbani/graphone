@@ -13,7 +13,7 @@ import JobCard from "@/components/JobCard";
 import ApplyModal from "@/components/ApplyModal";
 import RightRail from "@/components/RightRail";
 import Toast from "@/components/Toast";
-import { fetcher, API_URL } from "@/lib/api";
+import { fetcher } from "@/lib/api";
 import type { Company, Job, Category } from "@/types";
 
 export default function JobsPage() {
@@ -24,14 +24,14 @@ export default function JobsPage() {
   const [activeJob, setActiveJob] = useState<Job | null>(null);
   const [toast, setToast] = useState<string | null>(null);
 
-  const { data: companies } = useSWR<Company[]>(`${API_URL}/api/companies`, fetcher);
+  const { data: companies } = useSWR<Company[]>(`/api/companies`, fetcher);
 
   const jobsUrl = useMemo(() => {
     const params = new URLSearchParams();
     if (jobQuery) params.set("search", jobQuery);
     if (locationQuery) params.set("location", locationQuery);
     if (category !== "All") params.set("category", category);
-    return `${API_URL}/api/jobs?${params.toString()}`;
+    return `/api/jobs?${params.toString()}`;
   }, [jobQuery, locationQuery, category]);
 
   const { data: jobs, isLoading } = useSWR<Job[]>(jobsUrl, fetcher);
