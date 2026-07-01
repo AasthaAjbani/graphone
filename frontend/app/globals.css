@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-mesh bg-fixed text-ink;
+  background-color: #fdfdfe;
+}
+
+.glass-card {
+  @apply bg-white/70 backdrop-blur-md border border-white/60 shadow-[0_4px_24px_rgba(20,20,30,0.06)];
+}
+
+.glass-card:hover {
+  @apply shadow-[0_8px_32px_rgba(242,56,90,0.12)] -translate-y-0.5;
+  transition: all 0.2s ease;
+}
+
+::selection {
+  background: rgba(242, 56, 90, 0.2);
+}
+
+:focus-visible {
+  outline: 2px solid #f2385a;
+  outline-offset: 2px;
+}
